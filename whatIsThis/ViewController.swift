@@ -8,6 +8,9 @@
 import UIKit
 import CoreML
 import Vision
+import Alamofire
+import SwiftyJSON
+
 class ViewController: UIViewController {
 
     
@@ -21,6 +24,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
+
     private var imagePicker = UIImagePickerController ()
     
     var object:detectedObject?//detected object by Resnet50
@@ -30,7 +34,7 @@ class ViewController: UIViewController {
         
         imagePicker.delegate = self
         progressView.progress = 0
-        
+        informationLabel.textColor = .black
     }
     override func viewWillAppear(_ animated: Bool) {
         progressView.progress = 0
@@ -81,9 +85,11 @@ extension ViewController{
                if let firstResult = results.first{
                    
                    //passed result to object
-                   self.object = detectedObject(name:firstResult.identifier,image: image)
-                   
+                   self.object = detectedObject(name:self.getOneWord(words: firstResult.identifier),image: image)
+                       
                    print("tespit edilen nesne:\(firstResult.identifier)")
+                   
+                   
                }
            }
            
@@ -99,10 +105,29 @@ extension ViewController{
            
     }
     
-    @objc func gotoVC2(){
+    @objc func gotoVC2(){//Timer class trigger this func
         
         self.performSegue(withIdentifier: "toVC2", sender: object)
     }
+    
+    func getOneWord(words:String)->String{//basic algorithm to get one word from  which resnet50 detected object.
+        
+        var oneWord:String = ""
+        
+        for i in words{
+            
+            if i != ","{
+                
+                oneWord.append(i)
+                
+            }else{
+                break
+            }
+        }
+        
+        return oneWord
+    }
+    
     
 }
 
@@ -119,7 +144,13 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             }
             
         
-            detectObject(image: ciImage)//passed image to our func
+            DispatchQueue.main.async {
+                self.detectObject(image: ciImage)//passed image to our func
+            }
+            
+            
+            
+            
         }
         
         imagePicker.dismiss(animated: true,completion: nil)// camera will close and main page will open

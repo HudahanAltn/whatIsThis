@@ -12,11 +12,13 @@ class detectedObject{
     
     private var name:String?
     private var image:CIImage?
+//    private var information:String?
     
     init(name:String,image:CIImage){
         
         self.name = name
         self.image = image
+//        self.information = information
     }
     
     func getObjectName()->String?{
@@ -26,4 +28,10 @@ class detectedObject{
     func getObjectImage()->CIImage?{
         return image
     }
+//    func getInformation()->String?{
+//        return information
+//    }
+//    func setİnformation(information:String){
+//        self.information = information
+//    }
 }
