@@ -46,6 +46,10 @@
                                     <action selector="chooseAPicturePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4dY-t1-kyq"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="d4A-bB-QeZ">
+                                <rect key="frame" x="16" y="788" width="361" height="4"/>
+                                <color key="tintColor" red="0.41176470590000003" green="0.50980392159999999" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ah0-Wx-ssl">
                                 <rect key="frame" x="31" y="642" width="330" height="45"/>
                                 <constraints>
@@ -67,9 +71,12 @@
                             <constraint firstItem="ah0-Wx-ssl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="31" id="CRP-Ic-pwa"/>
                             <constraint firstItem="XSe-IQ-bEJ" firstAttribute="top" secondItem="Mtw-pp-vsu" secondAttribute="bottom" constant="71" id="E7W-bD-W98"/>
                             <constraint firstItem="Mtw-pp-vsu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="I0b-9S-Cug"/>
+                            <constraint firstItem="d4A-bB-QeZ" firstAttribute="top" secondItem="Cfe-VG-YxD" secondAttribute="bottom" constant="20" id="KZh-dO-reJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mtw-pp-vsu" secondAttribute="trailing" constant="16" id="Mgl-Ez-ez5"/>
+                            <constraint firstItem="d4A-bB-QeZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="OM0-UO-Bxo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ah0-Wx-ssl" secondAttribute="trailing" constant="32" id="Pc8-wi-fho"/>
                             <constraint firstItem="Cfe-VG-YxD" firstAttribute="top" secondItem="ah0-Wx-ssl" secondAttribute="bottom" constant="36" id="TuE-Ig-BdD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="d4A-bB-QeZ" secondAttribute="trailing" constant="16" id="WFQ-ZD-GFW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XSe-IQ-bEJ" secondAttribute="trailing" constant="72" id="WuS-9a-7Yv"/>
                             <constraint firstItem="Mtw-pp-vsu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="21" id="foW-4W-cWk"/>
                             <constraint firstItem="ah0-Wx-ssl" firstAttribute="top" secondItem="XSe-IQ-bEJ" secondAttribute="bottom" constant="89.670000000000002" id="hs0-AX-qWd"/>
@@ -81,9 +88,10 @@
                     <connections>
                         <outlet property="chooseAPictureButton" destination="Cfe-VG-YxD" id="Ya1-Ht-Qmq"/>
                         <outlet property="informationLabel" destination="Mtw-pp-vsu" id="SGL-Af-CSz"/>
+                        <outlet property="progressView" destination="d4A-bB-QeZ" id="ASD-8X-zjz"/>
                         <outlet property="questionMarkImageView" destination="XSe-IQ-bEJ" id="o9t-1x-ox5"/>
                         <outlet property="takeAPictureButton" destination="ah0-Wx-ssl" id="E44-n9-62S"/>
-                        <segue destination="gcn-fG-St9" kind="show" id="fTC-ng-n4t"/>
+                        <segue destination="gcn-fG-St9" kind="show" identifier="toVC2" id="fTC-ng-n4t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

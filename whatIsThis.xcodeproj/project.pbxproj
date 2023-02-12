@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05573B1929990CA900622B0B /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05573B1829990CA900622B0B /* ViewController2.swift */; };
+		05573B1B29990FA300622B0B /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 05573B1A29990FA300622B0B /* MobileNetV2.mlmodel */; };
 		0596E93A299848F800C79A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596E939299848F800C79A5E /* AppDelegate.swift */; };
 		0596E93C299848F800C79A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596E93B299848F800C79A5E /* SceneDelegate.swift */; };
 		0596E93E299848F800C79A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0596E93D299848F800C79A5E /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		05573B1829990CA900622B0B /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		05573B1A29990FA300622B0B /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		0596E936299848F800C79A5E /* whatIsThis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatIsThis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0596E939299848F800C79A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0596E93B299848F800C79A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				0596E942299848F900C79A5E /* Assets.xcassets */,
 				0596E944299848F900C79A5E /* LaunchScreen.storyboard */,
 				0596E947299848F900C79A5E /* Info.plist */,
+				05573B1A29990FA300622B0B /* MobileNetV2.mlmodel */,
 			);
 			path = whatIsThis;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				0596E93E299848F800C79A5E /* ViewController.swift in Sources */,
 				05573B1929990CA900622B0B /* ViewController2.swift in Sources */,
 				0596E93A299848F800C79A5E /* AppDelegate.swift in Sources */,
+				05573B1B29990FA300622B0B /* MobileNetV2.mlmodel in Sources */,
 				0596E93C299848F800C79A5E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +448,8 @@
 				DEVELOPMENT_TEAM = K2FS85Z6PG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whatIsThis/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "we need to access to take a picture to identify object";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we need to acces to library to upload picture";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -472,6 +478,8 @@
 				DEVELOPMENT_TEAM = K2FS85Z6PG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whatIsThis/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "we need to access to take a picture to identify object";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "we need to acces to library to upload picture";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
