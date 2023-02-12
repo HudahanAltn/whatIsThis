@@ -14,10 +14,18 @@ class ViewController2: UIViewController {
     
     @IBOutlet weak var objectNameLabel: UILabel!
     @IBOutlet weak var objectInformationTextView: UITextView!
+    
+    var detectedObject:detectedObject?// object comes from VC1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let object = detectedObject{ //optional binding 
+            
+            objectNameLabel.text = object.getObjectName()
+            objectImageView.image = UIImage(ciImage: object.getObjectImage()!)
+        }
+        
     }
     
 

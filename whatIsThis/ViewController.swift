@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import CoreML
+import Vision
 class ViewController: UIViewController {
 
     
@@ -20,7 +21,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var progressView: UIProgressView!
     
-    var imagePicker = UIImagePickerController ()
+    private var imagePicker = UIImagePickerController ()
+    
+    var object:detectedObject?//detected object by Resnet50
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,16 @@ class ViewController: UIViewController {
         progressView.progress = 0
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let o = sender as? detectedObject{
+            
+            let VC2 = segue.destination as! ViewController2
+            
+            VC2.detectedObject = o
+        }
+    }
+    
     @IBAction func takeAPicturePressed(_ sender: UIButton) {
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true)
@@ -49,11 +62,46 @@ extension ViewController{
     
     func detectObject(image:CIImage){
         
+           //we created an object from mobileNetV2 to passed testing data securely
+           guard let model = try? VNCoreMLModel(for: Resnet50().model) else{
+               fatalError("loading CoreML model failed.")
+           }
+        
+           //created a request to process image
+           let request = VNCoreMLRequest(model: model){
+               (request,error) in
+               
+               
+               //we got results
+               guard let results = request.results as? [VNClassificationObservation] else{
+                   fatalError("model failed to process image")
+               }
+               
+               //take first result
+               if let firstResult = results.first{
+                   
+                   //passed result to object
+                   self.object = detectedObject(name:firstResult.identifier,image: image)
+                   
+                   print("tespit edilen nesne:\(firstResult.identifier)")
+               }
+           }
+           
+           let handler = VNImageRequestHandler(ciImage: image)
+           
+           do{
+               
+               try handler.perform([request])
+               
+           }catch{
+               Swift.print("error request code:\(String(describing: error))")
+           }
+           
     }
     
     @objc func gotoVC2(){
         
-        self.performSegue(withIdentifier: "toVC2", sender: nil)
+        self.performSegue(withIdentifier: "toVC2", sender: object)
     }
     
 }
@@ -62,7 +110,7 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let userPickedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
+        if let userPickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             //image that user picked is stored like dictionary. and we must take original photo with "original ımage" method.and we converted the incoming image to UIImage  with the "if let"
             
             
@@ -74,7 +122,6 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             detectObject(image: ciImage)//passed image to our func
         }
         
-       
         imagePicker.dismiss(animated: true,completion: nil)// camera will close and main page will open
         
         UIView.animate(withDuration: 5, delay: 4, animations: {
@@ -83,8 +130,10 @@ extension ViewController:UIImagePickerControllerDelegate,UINavigationControllerD
             
         })
         
-        _ = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(gotoVC2), userInfo: nil, repeats: false)
+        _ = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(gotoVC2), userInfo: nil, repeats: false)// we got six second to pass to VC2
         
     }
+    
+   
     
 }
