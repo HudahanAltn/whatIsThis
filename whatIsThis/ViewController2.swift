@@ -74,9 +74,9 @@ extension ViewController2{
             
             let objectJSON:JSON = JSON(data)//JSON Parse
             
-            let pageID = objectJSON["query"]["pageids"][0].stringValue
+            let pageID = objectJSON["query"]["pageids"][0].stringValue// get pagedid to access extract
             
-            let objectDescription = objectJSON["query"]["pages"][pageID]["extract"].stringValue
+            let objectDescription = objectJSON["query"]["pages"][pageID]["extract"].stringValue //we got extracts
            
             
           
